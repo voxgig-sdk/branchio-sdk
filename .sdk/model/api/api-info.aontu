@@ -1,0 +1,21 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      description: "Create Branch.io deep links."
+      servers: [
+        {
+          url: "https://api2.branch.io/v1"
+        }
+      ]
+      summary: "Create Branch.io deep links."
+      title: "Branch.io Deep Linking API"
+      version: "1.0.0"
+      website: "https://api2.branch.io"
+    }
+  }
+}
+

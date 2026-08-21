@@ -1,0 +1,77 @@
+# Entity: url
+
+main: kit: entity: url: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alias"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "branch_key"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "campaign"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "channel"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "data"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "feature"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "url"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "url"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/url"
+          parts: [
+            "url"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

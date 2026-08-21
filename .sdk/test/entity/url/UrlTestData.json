@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "url": {
+      "URL00": {
+        "alias": "s50",
+        "branch_key": "s51",
+        "campaign": "s52",
+        "channel": "s53",
+        "data": {},
+        "feature": "s55",
+        "id": "URL00",
+        "url": "s57"
+      },
+      "URL01": {
+        "alias": "sa0",
+        "branch_key": "sa1",
+        "campaign": "sa2",
+        "channel": "sa3",
+        "data": {},
+        "feature": "sa5",
+        "id": "URL01",
+        "url": "sa7"
+      },
+      "URL02": {
+        "alias": "sf0",
+        "branch_key": "sf1",
+        "campaign": "sf2",
+        "channel": "sf3",
+        "data": {},
+        "feature": "sf5",
+        "id": "URL02",
+        "url": "sf7"
+      }
+    }
+  },
+  "new": {
+    "url": {
+      "url_ref01": {
+        "alias": "s140",
+        "branch_key": "s141",
+        "campaign": "s142",
+        "channel": "s143",
+        "data": {},
+        "feature": "s145",
+        "url": "s147"
+      }
+    }
+  }
+}

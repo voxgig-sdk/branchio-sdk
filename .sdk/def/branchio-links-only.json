@@ -1,0 +1,60 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Branch.io Deep Linking API",
+    "version": "1.0.0",
+    "description": "Create Branch.io deep links."
+  },
+  "servers": [
+    { "url": "https://api2.branch.io/v1" }
+  ],
+  "paths": {
+    "/url": {
+      "post": {
+        "operationId": "createLink",
+        "summary": "Create a deep link",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LinkInput" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created link",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Link" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LinkInput": {
+        "type": "object",
+        "required": ["branch_key"],
+        "properties": {
+          "branch_key": { "type": "string" },
+          "channel": { "type": "string" },
+          "feature": { "type": "string" },
+          "campaign": { "type": "string" },
+          "alias": { "type": "string" },
+          "data": { "type": "object" }
+        }
+      },
+      "Link": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    }
+  }
+}
