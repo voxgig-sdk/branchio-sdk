@@ -10,6 +10,8 @@ This is an unofficial SDK for the Branch.io Deep Linking public API, generated b
 
 Learn more about Voxgig SDKs at [voxgig.com/sdk](https://voxgig.com/sdk/).
 
+> TypeScript, Python, PHP, Golang, Lua, JavaScript SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
+
 ## Entities, not endpoints
 
 This SDK exposes the API as a small set of **semantic entities** — Url — that you
@@ -51,11 +53,62 @@ const url = await client.Url().create({ branch_key: 'example_branch_key' })
 console.log(url)
 ```
 
+### Python
+
+```python
+client = BranchioSDK.test()
+url = client.Url().create({"branch_key": "example"})
+print(url)
+```
+
+### PHP
+
+```php
+// Seed fixture data so offline calls resolve without a live server.
+$client = BranchioSDK::test([
+    "entity" => ["url" => ["test01" => []]],
+]);
+$url = $client->Url()->create(["branch_key" => "example"]);
+```
+
+### Golang
+
+```go
+client := sdk.Test()
+result, err := client.Url(nil).Create(
+    map[string]any{"branch_key": "example"}, nil,
+)
+```
+
+### Lua
+
+```lua
+local client = sdk.test()
+local result, err = client:Url():create({ branch_key = "example" })
+```
+
+### JavaScript
+
+```js
+const client = BranchioSDK.test()
+const url = await client.Url().create({ branch_key: 'example_branch_key' })
+// url is the entity, populated with mock data
+// — call url.data() for the record itself
+console.log(url)
+```
+
 ## Packages
 
 | Language | Package | Install |
 | --- | --- | --- |
 | TypeScript | `@voxgig-sdk/branchio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/branchio-sdk/releases) |
+| Python | `voxgig-sdk-branchio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/branchio-sdk/releases) |
+| PHP | `voxgig-sdk/branchio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/branchio-sdk/releases) |
+| Golang | `github.com/voxgig-sdk/branchio-sdk/go` | `go get github.com/voxgig-sdk/branchio-sdk/go@latest` |
+| Lua | `voxgig-sdk-branchio` | publish pending — [install from git tag](https://github.com/voxgig-sdk/branchio-sdk/releases) |
+| JavaScript | `@voxgig-sdk/branchio-js` | publish pending — [install from git tag](https://github.com/voxgig-sdk/branchio-sdk/releases) |
+| Go CLI | `github.com/voxgig-sdk/branchio-sdk/go-cli` | `go install github.com/voxgig-sdk/branchio-sdk/go-cli/cmd/branchio@latest` |
+| Go MCP server | `github.com/voxgig-sdk/branchio-sdk/go-mcp` | `go get github.com/voxgig-sdk/branchio-sdk/go-mcp@latest` |
 
 ## Quickstart
 
@@ -74,7 +127,31 @@ See the [TypeScript README](ts/README.md) for the full guide.
 
 | Surface | Path |
 | --- | --- |
-| **SDK** (TypeScript) | `ts/` |
+| **SDK** (TypeScript, Python, PHP, Golang, Lua, JavaScript) | `ts/` `py/` `php/` `go/` `lua/` `js/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
+
+## Use it from an AI agent (MCP)
+
+The generated MCP server exposes every operation in this SDK as an
+[MCP](https://modelcontextprotocol.io) tool that Claude, Cursor or Cline
+can call directly. Build and register it:
+
+```bash
+cd go-mcp && go build -o branchio-mcp .
+```
+
+Then add it to your agent's MCP config (Claude Desktop, Cursor, etc.):
+
+```json
+{
+  "mcpServers": {
+    "branchio": {
+      "command": "/abs/path/to/branchio-mcp"
+    }
+  }
+}
+```
 
 ## Entities
 
@@ -86,6 +163,54 @@ The API exposes one entity:
 
 The operations available across these entities are **create** — see each entity's
 own list above for exactly which it supports.
+
+## Quickstart in other languages
+
+### Python
+
+```python
+from branchio_sdk import BranchioSDK
+
+client = BranchioSDK()
+
+```
+
+### PHP
+
+```php
+<?php
+require_once 'branchio_sdk.php';
+
+$client = new BranchioSDK();
+
+```
+
+### Golang
+
+```go
+import sdk "github.com/voxgig-sdk/branchio-sdk/go"
+
+client := sdk.New()
+
+```
+
+### Lua
+
+```lua
+local sdk = require("branchio_sdk")
+
+local client = sdk.new()
+
+```
+
+### JavaScript
+
+```js
+const { BranchioSDK } = require('@voxgig-sdk/branchio-js')
+
+const client = new BranchioSDK()
+
+```
 
 ## Direct and prepare
 
@@ -105,6 +230,59 @@ When the entity interface does not cover an endpoint, use `direct`:
 
 **TypeScript:**
 ```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example' },
+})
+if (result instanceof Error) {
+  throw result
+}
+console.log(result.data)
+```
+
+**Python:**
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example"},
+})
+```
+
+**PHP:**
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example"],
+]);
+```
+
+**Go:**
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example"},
+})
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+**Lua:**
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example" },
+})
+```
+
+**JavaScript:**
+```js
 const result = await client.direct({
   path: '/api/resource/{id}',
   method: 'GET',
@@ -144,6 +322,11 @@ Pass custom features via the `extend` option at construction time.
 ## Per-language documentation
 
 - [TypeScript](ts/README.md)
+- [Python](py/README.md)
+- [PHP](php/README.md)
+- [Golang](go/README.md)
+- [Lua](lua/README.md)
+- [JavaScript](js/README.md)
 
 ## Upstream API
 
