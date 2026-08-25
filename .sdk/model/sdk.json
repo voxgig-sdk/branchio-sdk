@@ -1,15 +1,6 @@
 {
-  "NAME": "BRANCHIO",
-  "Name": "Branchio",
   "def": "branchio-links-only.json",
   "main": {
-    "api": {
-      "entity": {},
-      "guide": {}
-    },
-    "custom": {
-      "plurals": {}
-    },
     "def": {
       "desc": ""
     },
@@ -811,8 +802,5 @@
     }
   },
   "name": "branchio",
-  "name-": "branchio",
-  "name_": "branchio",
-  "name__orig": "branchio",
   "origin": "voxgig-sdk"
 }
