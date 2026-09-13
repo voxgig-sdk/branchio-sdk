@@ -91,6 +91,10 @@ class BranchioConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'url',
           'op' => [
             'create' => [
@@ -102,13 +106,18 @@ class BranchioConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/url',
-                  'parts' => [
-                    'url',
+                  'segments' => [
+                    [
+                      'lit' => 'url',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'url',
                   ],
                 ],
               ],

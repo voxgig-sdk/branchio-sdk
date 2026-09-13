@@ -60,8 +60,10 @@ main: kit: entity: url: {
         {
           method: "POST"
           orig: "/url"
-          parts: [
-            "url"
+          segments: [
+            {
+              lit: "url"
+            }
           ]
           transform: {
             req: "`reqdata`"
