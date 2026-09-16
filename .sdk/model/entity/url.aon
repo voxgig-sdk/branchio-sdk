@@ -58,6 +58,12 @@ main: kit: entity: url: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /url"
+            json: "{\"operationId\":\"createLink\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"alias\":{\"type\":\"string\"},\"branch_key\":{\"type\":\"string\"},\"campaign\":{\"type\":\"string\"},\"channel\":{\"type\":\"string\"},\"data\":{\"type\":\"object\"},\"feature\":{\"type\":\"string\"}},\"required\":[\"branch_key\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"id\":{\"type\":\"string\"},\"url\":{\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"The created link\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/url"
           segments: [

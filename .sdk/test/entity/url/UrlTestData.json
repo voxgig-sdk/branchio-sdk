@@ -45,5 +45,69 @@
         "url": "s147"
       }
     }
+  },
+  "requests": {
+    "POST /url": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "createLink",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "alias": {
+                    "type": "string"
+                  },
+                  "branch_key": {
+                    "type": "string"
+                  },
+                  "campaign": {
+                    "type": "string"
+                  },
+                  "channel": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object"
+                  },
+                  "feature": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "branch_key"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The created link"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
